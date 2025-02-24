@@ -1,0 +1,224 @@
+/* 🌟 Full-Screen Centering */
+.authContainer {
+  width: 100%;
+  height: 100vh ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(66, 119, 119, 0.607);
+  backdrop-filter: blur(12px); /* Glossy effect */
+ 
+  justify-content: space-around;
+}
+
+/* 📌 Two-Block Layout */
+.authWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+/* 🔹 Left Branding Section */
+.authBrand {
+  margin-right: 1rem !important;
+  flex: 1;
+  text-align: center;
+  padding: 3rem;
+  margin-right: 10rem !important;
+  background: orangered;
+  border-top-right-radius: 2rem; /* Darkened Glass Effect */
+  border-bottom-right-radius: 2rem;
+}
+
+.brandTitle {
+  font-size: 2rem;
+  color: white;
+  font-weight: bold;
+}
+
+.brandTagline {
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+}
+
+/* 📌 Right Auth Card */
+.authCard {
+  margin-right: 10rem !important;
+  flex: 1;
+  margin-left: 1rem !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 4rem;
+  min-width: 400px;
+  
+}
+
+/* 🎨 Form Styling */
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.formControl {
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.formControl::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.formControl:focus {
+  border-color: #ffffff;
+  outline: none;
+}
+
+/* 🎨 Buttons */
+.submitButton {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(45, 64, 89, 0.85);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submitButton:hover {
+  background: rgba(45, 64, 89, 1);
+  transform: translateY(-2px);
+}
+
+/* ⚡ Social Authentication */
+.socialAuth {
+  margin-top: 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.socialDivider {
+  color: rgba(255, 255, 255, 0.8);
+  position: relative;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.socialDivider::before,
+.socialDivider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 45%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.socialDivider::before {
+  left: 0;
+}
+
+.socialDivider::after {
+  right: 0;
+}
+
+.socialButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.socialButton {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.socialButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* 🎨 Header */
+.authHeader {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.authTitle {
+  font-size: 2.2rem;
+  color: white;
+}
+
+.authSubtitle {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 📌 Responsive Adjustments */
+@media (max-width: 1024px) {
+  .authWrapper {
+    flex-direction: column;
+    width: 100vw;
+  }
+
+  .authBrand {
+    padding: 2rem;
+  }
+
+  .authCard {
+    padding: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .authWrapper {
+    width: 95%;
+    flex-direction: column;
+  }
+
+  .authBrand {
+    display: none; /* Hide branding on small screens */
+  }
+
+  .authCard {
+    width: 100%;
+    padding: 2rem;
+  }
+
+  .authTitle {
+    font-size: 1.75rem;
+  }
+}

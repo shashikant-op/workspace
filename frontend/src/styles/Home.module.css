@@ -1,0 +1,154 @@
+.container {
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    height: 100vh;
+    margin: 0 auto;
+  }
+  
+  .heading {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    font-weight: 600;
+    color: #2d4059;
+  }
+  
+  .highlight {
+    color: #ea5455;
+    position: relative;
+  }
+  
+  .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #ffd460;
+  }
+  
+  .grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  
+  .workspaceCard {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .workspaceCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .cardHeader {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .searchContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .searchInput {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+  }
+  
+  .searchInput:focus {
+    border-color: #007b7f;
+    box-shadow: 0 0 5px rgba(0, 123, 127, 0.5);
+  }
+  
+  .avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #2d4059;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  
+  .workspaceName {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+    color: #222831;
+  }
+  
+  .fileCount {
+    color: #6c757d;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .viewButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: #2d4059;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    background: rgba(45, 64, 89, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .viewButton:hover {
+    background: rgba(45, 64, 89, 0.2);
+    color: #1a2637;
+  }
+  
+  .emptyState {
+    text-align: center;
+    padding: 4rem 0;
+  }
+  
+  .emptyIllustration {
+    font-size: 4rem;
+    color: #dee2e6;
+    margin-bottom: 1rem;
+  }
+  
+  .emptyText {
+    color: #6c757d;
+    font-size: 1.1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .heading {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .workspaceCard {
+      margin:01rem;
+  }
+  }
+  
