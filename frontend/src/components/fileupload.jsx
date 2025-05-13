@@ -25,6 +25,9 @@ const FileUpload = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
+      console.log(token,"token");
+      console.log(API_URL,"api url");
+      console.log("formdata",formData);
       await axios.post(`${API_URL}/api/files/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
