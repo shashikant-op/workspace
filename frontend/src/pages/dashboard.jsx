@@ -62,6 +62,8 @@ const Dashboard = () => {
       }
     };
 
+
+    //handle visibility
   const handleVisibilityToggle = async (fileId, isPublic) => {
     try {
       const token = localStorage.getItem('token');

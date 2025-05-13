@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, Form, Alert } from 'react-bootstrap';
 
+const API_URL = import.meta.env.VITE_BACKEND_URL;
 const FileUpload = () => {
   const [file, setFile] = useState(null);
   const [isPublic, setIsPublic] = useState(false);
@@ -24,7 +25,7 @@ const FileUpload = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/files/upload', formData, {
+      await axios.post(`${API_URL}/api/files/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`
