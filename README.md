@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Workspace - Collaborative File Sharing Platform
 
 Workspace is a modern, intuitive platform designed to simplify file sharing and collaboration. With features like public workspaces, secure file uploads, and a seamless user experience, Workspace ensures an efficient workflow for individuals and teams.
@@ -88,3 +89,6 @@ For any queries, reach out at `support@workspace.com`.
 
 **Happy Coding! 🚀**
 
+=======
+# workspac
+>>>>>>> 26d336d (deployment changes)

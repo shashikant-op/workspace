@@ -5,16 +5,18 @@ const connectDB = require('./config/db');
 const authRoutes = require('./routes/auth');
 const fileRoutes = require('./routes/files');
 const path = require('path');
-
 const app = express();
+
+
+
+
 // Middleware
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const ADMIN_EMAIL = process.env.AUTH_ADMIN_EMAIL;
 const ADMIN_PASSWORD = process.env.AUTH_ADMIN_PASSWORD;
-console.log(ADMIN_EMAIL);
 
 app.post('/admin/login', (req, res) => {
   const { email, password } = req.body;
@@ -22,9 +24,11 @@ app.post('/admin/login', (req, res) => {
   if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
     return res.json({ success: true, message: 'Login successful' });
   } else {
-    return res.status(502).json({ success: false, message: 'Invalid credentials' });
+    return res.status(502).json({ success: false, message: 'check password and email' });
   }
-});
+}); 
+
+
 // Database connection
 connectDB();
 

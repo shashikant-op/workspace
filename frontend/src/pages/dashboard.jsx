@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom';
 import FileUpload from '../components/fileupload';
 import styles from '../styles/Dashboard.module.css';
 import { Card, ListGroup, Button, Alert } from 'react-bootstrap';
-
+import {Form} from "react-bootstrap";
 
 const Dashboard = () => {
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [searchTerm,setSearchTerm]=useState('');
+  const [filteredfile,setfilteredfile]=useState([]);
 
   const fetchFiles = async () => {
     try {
@@ -18,6 +20,7 @@ const Dashboard = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setFiles(response.data);
+      setfilteredfile(response.data);
       setError('');
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to load files');
@@ -43,6 +46,21 @@ const Dashboard = () => {
       setError(err.response?.data?.error || 'Failed to delete file');
     }
   };
+    const handleSearch = (e) => {
+      const query = e.target.value.toLowerCase();
+      setSearchTerm(query);
+    
+      if (query === "") {
+        setfilteredfile(files);
+      } else {
+        const filtered = files.filter(
+          (file) =>
+            (file.title && file.title.toLowerCase().includes(query)) || 
+            file.filename.toLowerCase().includes(query)
+        );
+        setfilteredfile(filtered);
+      }
+    };
 
   const handleVisibilityToggle = async (fileId, isPublic) => {
     try {
@@ -76,18 +94,45 @@ const Dashboard = () => {
   return (
     <div className={styles.dashboardContainer}>
       <div className={styles.header}>
+        {/* left box */}
+        <div>
         <h1 className={styles.title}><span className='!text-teal-600'>Your</span> Workspace</h1>
-        <div className="bg-teal-600 p-12  rounded-xl shadow-md text-white">
-          <span className={styles.fileCount}>
-            <i className="bi bi-folder-symlink"></i> {files.length} files
+        <div className="bg-teal-600 p-2  flex items-center justify-evenly rounded-xl shadow-md text-white">
+        <span className='border-r-1 mr-3 pr-3'>
+            <i className="bi bi-folder-symlink"></i> {files.length} Post
           </span>
+          <span className='border-r-1 mr-3 pr-3'>
+            <i className="bi bi-folder-symlink"></i> {files.length} Project
+          </span>
+          <span className='border-r-1 mr-3 pr-3'>
+            <i className="bi bi-folder-symlink"></i> {files.length} Payload
+          </span>
+          <span className=' mr-3 pr-3'>
+            <i className="bi bi-folder-symlink"></i> {files.length} Follower
+          </span>
+         
+        </div>
+        <div className={`${styles.searchContainer}  !mt-3 !mb-3 mx-auto w-full p-3`}>
+        <Form.Control
+          type="text"
+          placeholder="Search file by name..."
+          value={searchTerm}
+          onChange={handleSearch}
+          className={styles.searchInput}
+        />
+      </div>
+        </div>
+        
+       
+        <div className="bg-teal-600 p-12  rounded-xl shadow-md text-white">
+         
           <FileUpload onUploadSuccess={fetchFiles} />
         </div>
       </div>
 
       {error && <Alert variant="danger" className={styles.alert}>{error}</Alert>}
 
-      {files.length === 0 ? (
+      {filteredfile.length === 0 ? (
         <div className={styles.emptyState}>
           <div className={styles.emptyIllustration}>
             <i className="bi bi-upload"></i>
@@ -99,10 +144,8 @@ const Dashboard = () => {
       ) : (
         <Card >
           <ListGroup variant="flush" className='flex-row  p-2 overflow-hidden !justify-center flex-wrap items-center '>
-            {files.map((file) => (
-              <ListGroup.Item key={file._id} className="bg-white border p-6 rounded-lg shadow-md transition-transform duration-200 ease-in-out hover:shadow-lg hover:-translate-y-0.5 mr-8 mb-8"
-
->
+            {filteredfile.map((file) => (
+              <ListGroup.Item key={file._id} className="bg-white border p-6 rounded-lg shadow-md transition-transform duration-200 ease-in-out hover:shadow-lg hover:-translate-y-0.5 mr-8 mb-8">
                 <div className= 'gap-1' >
                   <div className=' flex pt-0.5 pb-0.5 items-center justify-between  rounded-lg '>
                   <i className={`bi ${file.isPublic ? 'bi-globe ml-3 text-orange-600' : 'bi-lock text-orange-600 ml-3'} ${styles.statusIcon}`}></i>

@@ -7,19 +7,20 @@ const path = require('path');
 const checkAdmin=require('../middleware/adminauth.js');
 const User =require("../models/User.js");
 
-// Configure Multer
+// Multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/');
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
+    console.log(file.originalname);
   }
 });
 
 const upload = multer({ storage });
 
-// Upload file
+// Upload 
 router.post('/upload', auth, upload.single('file'), async (req, res) => {
   try {
     const file = new File({
