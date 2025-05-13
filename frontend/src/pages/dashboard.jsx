@@ -5,7 +5,7 @@ import FileUpload from '../components/fileupload';
 import styles from '../styles/Dashboard.module.css';
 import { Card, ListGroup, Button, Alert } from 'react-bootstrap';
 import {Form} from "react-bootstrap";
-
+const API_URL = import.meta.env.VITE_BACKEND_URL;
 const Dashboard = () => {
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,7 +16,7 @@ const Dashboard = () => {
   const fetchFiles = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`${process.env.BACKEND_URL}/api/files/my-files`, {
+      const response = await axios.get(`${API_URL}/api/files/my-files`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setFiles(response.data);
@@ -38,7 +38,7 @@ const Dashboard = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`${process.env.BACKEND_URL}/api/files/${fileId}`, {
+      await axios.delete(`${API_URL}/api/files/${fileId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setFiles(files.filter((file) => file._id !== fileId));
