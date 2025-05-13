@@ -30,7 +30,7 @@ app.post('/admin/login', (req, res) => {
     return res.status(502).json({ success: false, message: 'check password and email' });
   }
 }); 
-
+console.log(process.env.CLOUD_NAME);
 
 // Database connection
 connectDB();
