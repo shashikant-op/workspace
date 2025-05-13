@@ -2,43 +2,43 @@ const express = require('express');
 const router = express.Router();
 const File = require('../models/File');
 const auth = require('../middleware/auth');
+const checkAdmin = require('../middleware/adminauth.js');
+const User = require('../models/User.js');
+const cloudinary = require('../utils/cloudinary');
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const multer = require('multer');
-const path = require('path');
-const checkAdmin=require('../middleware/adminauth.js');
-const User =require("../models/User.js");
 
-// Multer
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-    console.log(file.originalname);
+// Cloudinary storage setup
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: 'workspace-uploads',
+    allowed_formats: ['jpg', 'png', 'pdf', 'docx', 'xlsx', 'mp4', 'txt'],
+    public_id: (req, file) => Date.now() + '-' + file.originalname
   }
 });
 
 const upload = multer({ storage });
 
-// Upload 
+// Upload file
 router.post('/upload', auth, upload.single('file'), async (req, res) => {
   try {
     const file = new File({
-      filename: req.file.filename,
-      title:req.body.title,
-      path: req.file.path,
+      filename: req.file.originalname,
+      title: req.body.title,
+      url: req.file.path, // Cloudinary provides the file URL in .path
       isPublic: req.body.isPublic === 'true',
       userId: req.user._id
     });
     await file.save();
     res.json({ message: 'File uploaded successfully' });
   } catch (err) {
+    console.error('Upload error:', err);
     res.status(500).json({ error: err.message });
   }
 });
 
 // Get public files
-
 router.get('/public', async (req, res) => {
   try {
     const files = await File.find({ isPublic: true })
@@ -51,16 +51,15 @@ router.get('/public', async (req, res) => {
   }
 });
 
-
 // Get user's workspace
 router.get('/workspace/:userId', async (req, res) => {
   try {
     const user = await User.findById(req.params.userId).select('name');
     if (!user) return res.status(404).json({ error: 'User not found' });
 
-    const files = await File.find({ 
+    const files = await File.find({
       userId: req.params.userId,
-      isPublic: true 
+      isPublic: true
     });
 
     res.json({
@@ -75,25 +74,27 @@ router.get('/workspace/:userId', async (req, res) => {
   }
 });
 
-
-//admin routes
-
-//get user details
-
-router.get("/admin/userdata",async(req,res)=>{
-      const users=await User.find({});
-      res.json(users);
+// Admin: get user data
+router.get('/admin/userdata', async (req, res) => {
+  try {
+    const users = await User.find({});
+    res.json(users);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
-//get file data 
+// Admin: get file data
+router.get('/admin/filedata', async (req, res) => {
+  try {
+    const files = await File.find({});
+    res.json(files);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
-router.get("/admin/filedata",async(req,res)=>{
-  const files=await File.find({});
-  res.json(files);
-})
-
-
-// Get user's files
+// Get user's own files
 router.get('/my-files', auth, async (req, res) => {
   try {
     const files = await File.find({ userId: req.user._id });
@@ -103,7 +104,7 @@ router.get('/my-files', auth, async (req, res) => {
   }
 });
 
-// Delete file
+// Delete file (user)
 router.delete('/:id', auth, async (req, res) => {
   try {
     const file = await File.findOneAndDelete({
@@ -121,17 +122,11 @@ router.delete('/:id', auth, async (req, res) => {
   }
 });
 
-
-// Delete file
+// Admin: delete any file
 router.delete('/admin/:id', async (req, res) => {
   try {
-    const file = await File.findOneAndDelete({
-      _id: req.params.id
-    });
-
-    if (!file) {
-      return res.status(404).json({ error: 'File not found' });
-    }
+    const file = await File.findOneAndDelete({ _id: req.params.id });
+    if (!file) return res.status(404).json({ error: 'File not found' });
 
     res.json({ message: 'File deleted successfully' });
   } catch (err) {
@@ -139,23 +134,16 @@ router.delete('/admin/:id', async (req, res) => {
   }
 });
 
-// Delete user
+// Admin: delete user
 router.delete('/admin/user/:id', async (req, res) => {
   try {
-    const user = await User.findOneAndDelete({
-      _id: req.params.id
-    });
+    const user = await User.findOneAndDelete({ _id: req.params.id });
+    if (!user) return res.status(404).json({ error: 'User not found' });
 
-    if (!user) {
-      return res.status(404).json({ error: 'File not found' });
-    }
-
-    res.json({ message: 'File deleted successfully' });
+    res.json({ message: 'User deleted successfully' });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
-
-
 
 module.exports = router;
