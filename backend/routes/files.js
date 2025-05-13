@@ -5,7 +5,7 @@ const auth = require('../middleware/auth');
 const checkAdmin = require('../middleware/adminauth.js');
 const User = require('../models/User.js');
 const multer = require('multer');
-const { storage } = require('./cloudinary'); // Import the cloudinary storage config
+const { storage } = require('../utils/cloudinary'); // Import the cloudinary storage config
 
 const upload = multer({ storage });
 
