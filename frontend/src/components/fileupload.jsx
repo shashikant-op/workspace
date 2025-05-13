@@ -32,11 +32,10 @@ const FileUpload = () => {
   console.log(key, value);
 }
       await axios.post(`${API_URL}/api/files/upload`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`
-        }
-      });
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+});
       window.location.reload(); // Refresh file list
     } catch (err) {
       setError(err.response?.data?.error || 'Upload failed');
