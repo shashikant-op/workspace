@@ -33,7 +33,7 @@ const Home = () => {
   useEffect(() => {
     const fetchWorkspaces = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/files/public");
+        const res = await axios.get(`${process.env.BACKEND_URL}/api/files/public`);
         const grouped = groupByUser(res.data);
         const workspacesArray = Object.values(grouped);
 

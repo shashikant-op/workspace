@@ -18,7 +18,7 @@ const Workspace = () => {
     const fetchWorkspace = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/files/workspace/${userId}`
+          `${process.env.BACKEND_URL}/api/files/workspace/${userId}`
         );
         setWorkspaceData(response.data);
         setFilteredWorkspacesData(response.data.files || []);
@@ -130,7 +130,7 @@ const Workspace = () => {
                     {file.title ? file.title.slice(0, 15) : file.filename.slice(0, 4)}
                   </div>
                   <a
-                    href={`http://localhost:5000/uploads/${file.filename}`}
+                    href={`${process.env.BACKEND_URL}/uploads/${file.filename}`}
                     download
                     className="text-blue-500 hover:text-blue-700 text-lg"
                   >

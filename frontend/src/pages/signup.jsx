@@ -33,7 +33,7 @@ const Signup = () => {
 
     try {
       setLoading(true);
-      await axios.post('http://localhost:5000/api/auth/signup', {
+      await axios.post(`${process.env.BACKEND_URL}/api/auth/signup`, {
         name: formData.name,
         email: formData.email,
         password: formData.password

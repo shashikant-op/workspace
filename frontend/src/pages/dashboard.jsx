@@ -16,7 +16,7 @@ const Dashboard = () => {
   const fetchFiles = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/files/my-files', {
+      const response = await axios.get(`${process.env.BACKEND_URL}/api/files/my-files`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setFiles(response.data);
@@ -38,7 +38,7 @@ const Dashboard = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/files/${fileId}`, {
+      await axios.delete(`${process.env.BACKEND_URL}/api/files/${fileId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setFiles(files.filter((file) => file._id !== fileId));
@@ -66,7 +66,7 @@ const Dashboard = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `http://localhost:5000/api/files/${fileId}/visibility`,
+        `${process.env.BACKEND_URL}/api/files/${fileId}/visibility`,
         { isPublic: !isPublic },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -177,7 +177,7 @@ const Dashboard = () => {
                     variant="link"
                     className="px-4 py-2 rounded-lg hover:!bg-teal-600 hover:!text-white border border-gray-300 bg-white text-indigo-600 cursor-pointer transition-all duration-200 ease-in-out"
 
-                    href={`http://localhost:5000/uploads/${file.filename}`}
+                    href={`${process.env.BACKEND_URL}/uploads/${file.filename}`}
                     download
                   >
                     <i className="bi bi-download fs-5"></i>
