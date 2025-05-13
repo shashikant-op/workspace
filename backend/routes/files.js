@@ -4,6 +4,7 @@ const File = require('../models/File');
 const auth = require('../middleware/auth');
 const checkAdmin = require('../middleware/adminauth.js');
 const User = require('../models/User.js');
+const multer=require("multer");
 const {storage}=require("../utils/cloudinary.js");
 const upload = multer({ storage });
 
