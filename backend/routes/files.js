@@ -4,20 +4,7 @@ const File = require('../models/File');
 const auth = require('../middleware/auth');
 const checkAdmin = require('../middleware/adminauth.js');
 const User = require('../models/User.js');
-const cloudinary = require('../utils/cloudinary');
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
-const multer = require('multer');
-
-// Cloudinary storage setup
-const storage = new CloudinaryStorage({
-  cloudinary,
-  params: {
-    folder: 'workspace-uploads',
-    allowed_formats: ['jpg', 'png', 'pdf', 'docx', 'xlsx', 'mp4', 'txt'],
-    public_id: (req, file) => Date.now() + '-' + file.originalname
-  }
-});
-
+const {storage}=require("../utils/cloudinary.js");
 const upload = multer({ storage });
 
 // Upload file
