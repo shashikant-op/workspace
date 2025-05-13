@@ -4,26 +4,29 @@ const File = require('../models/File');
 const auth = require('../middleware/auth');
 const checkAdmin = require('../middleware/adminauth.js');
 const User = require('../models/User.js');
-const multer=require("multer");
-const {storage}=require("../utils/cloudinary.js");
+const multer = require('multer');
+const { storage } = require('./cloudinary'); // Import the cloudinary storage config
+
 const upload = multer({ storage });
 
-// Upload file
+
+// File Upload Route
 router.post('/upload', auth, upload.single('file'), async (req, res) => {
   try {
+    // Ensure the file is uploaded to Cloudinary
     const file = new File({
       filename: req.file.originalname,
       title: req.body.title,
-      url: req.file.path,
-      isPublic: req.body.isPublic === 'true',
-      userId: req.user._id
+      url: req.file.path, // Cloudinary URL will be stored here
+      isPublic: req.body.isPublic === 'true', // Convert 'true' to a boolean
+      userId: req.user._id // Assuming you have user ID stored in `req.user`
     });
-    console.log("file upload", req.file.originalname, req.body.title, req.file.path);
+
+    console.log("File upload successful", req.file.originalname, req.body.title, req.file.path);
+
     await file.save();
     res.json({ message: 'File uploaded successfully' });
-
   } catch (err) {
-    console.log("file upload error", req.file?.originalname, req.body?.title, req.file?.path); // Safe logging
     console.error('Upload error:', err);
     res.status(500).json({ error: err.message });
   }
