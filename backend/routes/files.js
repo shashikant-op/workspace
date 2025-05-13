@@ -4,81 +4,31 @@ const File = require('../models/File');
 const auth = require('../middleware/auth');
 const checkAdmin = require('../middleware/adminauth.js');
 const User = require('../models/User.js');
-const multer=require("multer");
 const {storage}=require("../utils/cloudinary.js");
 const upload = multer({ storage });
 
-// In your upload route
+// Upload file
 router.post('/upload', auth, upload.single('file'), async (req, res) => {
   try {
-    // Validate file existence
-    if (!req.file) {
-      return res.status(400).json({ 
-        error: 'No file uploaded. Please select a file.' 
-      });
-    }
-
-    // Verify Cloudinary upload succeeded
-    if (!req.file.path || !req.file.public_id) {
-      console.error('Cloudinary upload failed. File details:', req.file);
-      throw new Error('Failed to store file in cloud storage');
-    }
-
-    // Validate required fields
-    if (!req.body.title) {
-      return res.status(400).json({ 
-        error: 'Title is required for file upload' 
-      });
-    }
-
-    // Create new file document
     const file = new File({
       filename: req.file.originalname,
       title: req.body.title,
       url: req.file.path,
-      publicId: req.file.public_id,  // Store public_id for future management
       isPublic: req.body.isPublic === 'true',
       userId: req.user._id
     });
 
-    // Save to database
+    console.log("file upload", req.file.originalname, req.body.title, req.file.path);
     await file.save();
-
-    // Send success response
-    res.status(201).json({
-      message: 'File uploaded successfully',
-      file: {
-        id: file._id,
-        title: file.title,
-        url: file.url,
-        isPublic: file.isPublic,
-        uploadedAt: file.uploadedAt
-      }
-    });
+    res.json({ message: 'File uploaded successfully' });
 
   } catch (err) {
+    console.log("file upload error", req.file?.originalname, req.body?.title, req.file?.path); // Safe logging
     console.error('Upload error:', err);
-    
-    // Cleanup failed Cloudinary upload
-    if (req.file?.public_id) {
-      await cloudinary.uploader.destroy(req.file.public_id)
-        .catch(cleanupError => 
-          console.error('Cleanup failed:', cleanupError)
-        );
-    }
-
-    // Error response
-    const response = {
-      error: 'File upload failed',
-      details: process.env.NODE_ENV === 'production' 
-        ? 'Please try again later' 
-        : err.message
-    };
-
-    res.status(err instanceof mongoose.Error.ValidationError ? 400 : 500)
-       .json(response);
+    res.status(500).json({ error: err.message });
   }
 });
+
 
 // Get public files
 router.get('/public', async (req, res) => {
