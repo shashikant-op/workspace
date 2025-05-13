@@ -10,24 +10,25 @@ const upload = multer({ storage });
 
 // Upload file
 router.post('/upload', auth, upload.single('file'), async (req, res) => {
-  try {
-    const file = new File({
-      filename: req.file.originalname,
-      title: req.body.title,
-      url: req.file.path,
-      isPublic: req.body.isPublic === 'true',
-      userId: req.user._id
-    });
+  res.send("lora");
+  // try {
+  //   const file = new File({
+  //     filename: req.file.originalname,
+  //     title: req.body.title,
+  //     url: req.file.path,
+  //     isPublic: req.body.isPublic === 'true',
+  //     userId: req.user._id
+  //   });
 
-    console.log("file upload", req.file.originalname, req.body.title, req.file.path);
-    await file.save();
-    res.json({ message: 'File uploaded successfully' });
+  //   console.log("file upload", req.file.originalname, req.body.title, req.file.path);
+  //   await file.save();
+  //   res.json({ message: 'File uploaded successfully' });
 
-  } catch (err) {
-    console.log("file upload error", req.file?.originalname, req.body?.title, req.file?.path); // Safe logging
-    console.error('Upload error:', err);
-    res.status(500).json({ error: err.message });
-  }
+  // } catch (err) {
+  //   console.log("file upload error", req.file?.originalname, req.body?.title, req.file?.path); // Safe logging
+  //   console.error('Upload error:', err);
+  //   res.status(500).json({ error: err.message });
+  // }
 });
 
 
