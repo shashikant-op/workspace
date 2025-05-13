@@ -12,37 +12,39 @@ const FileUpload = () => {
   const [title, setTitle] = useState(""); // ✅ Fixed: Use empty string instead of null
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!file || !title.trim()) {
-      setError('File and title are required.');
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('title', title.trim()); // ✅ Trim title to remove spaces
-    formData.append('isPublic', isPublic);
-
-    try {
-      setLoading(true);
-      const token = localStorage.getItem('token');
-      console.log(token,"token");
-      console.log(API_URL,"api url");
-      for (let [key, value] of formData.entries()) {
-  console.log(key, value);
-}
-      await axios.post(`${API_URL}/api/files/upload`, formData, {
-  headers: {
-    Authorization: `Bearer ${token}`
+  e.preventDefault();
+  if (!file || !title.trim()) {
+    setError('File and title are required.');
+    return;
   }
-});
-      window.location.reload(); // Refresh file list
-    } catch (err) {
-      setError(err.response?.data?.error || 'Upload failed');
-    } finally {
-      setLoading(false);
-    }
-  };
+
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('title', title.trim()); // Trimming title
+  formData.append('isPublic', isPublic);
+
+  try {
+    setLoading(true);
+    const token = localStorage.getItem('token');
+    console.log("Token:", token);
+    console.log("API URL:", API_URL);
+
+    // Make POST request to backend
+    await axios.post(`${API_URL}/api/files/upload`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}` // Bearer token in headers
+      }
+    });
+
+    window.location.reload(); // Refresh the file list
+  } catch (err) {
+    setError(err.response?.data?.error || 'Upload failed');
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="mb-4">
