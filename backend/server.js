@@ -11,12 +11,8 @@ const app = express();
 
 
 // Middleware
-app.use(cors({
-  origin: 'https://workspace-one-theta.vercel.app', 
-  credentials: true
-}));
+app.use(cors());
 app.use(express.json()); 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const ADMIN_EMAIL = process.env.AUTH_ADMIN_EMAIL;
 const ADMIN_PASSWORD = process.env.AUTH_ADMIN_PASSWORD;
@@ -30,7 +26,6 @@ app.post('/admin/login', (req, res) => {
     return res.status(502).json({ success: false, message: 'check password and email' });
   }
 }); 
-console.log(process.env.CLOUD_NAME);
 
 // Database connection
 connectDB();
