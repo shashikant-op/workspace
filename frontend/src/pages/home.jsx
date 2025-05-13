@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { Card, Spinner, Alert, Form } from "react-bootstrap";
 import styles from "../styles/Home.module.css"; // Ensure this CSS module exists
-
+const API_URL = import.meta.env.VITE_BACKEND_URL;
 const Home = () => {
   const [workspaces, setWorkspaces] = useState([]);
   const [filteredWorkspaces, setFilteredWorkspaces] = useState([]);
@@ -33,7 +33,7 @@ const Home = () => {
   useEffect(() => {
     const fetchWorkspaces = async () => {
       try {
-        const res = await axios.get(`${process.env.BACKEND_URL}/api/files/public`);
+        const res = await axios.get(`${API_URL}/api/files/public`);
         const grouped = groupByUser(res.data);
         const workspacesArray = Object.values(grouped);
 

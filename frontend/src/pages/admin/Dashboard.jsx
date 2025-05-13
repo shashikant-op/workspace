@@ -3,6 +3,7 @@ import { FaTrash, FaSearch, FaUsers, FaFileCode } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_BACKEND_URL;
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const [selectedTab, setSelectedTab] = useState('users');
@@ -22,7 +23,7 @@ const AdminDashboard = () => {
   useEffect(()=>{
     const fetchdata=async()=>{
     try{
-       const res =await axios.get(`${process.env.BACKEND_URL}/api/files/admin/userdata`);
+       const res =await axios.get(`${API_URL}/api/files/admin/userdata`);
     setUsers(Object.values(res.data));
     }catch(e){
       console.log(e.message);
@@ -36,7 +37,7 @@ const AdminDashboard = () => {
 
   useEffect(()=>{
     const fetchfiledata=async()=>{
-      const res=await axios.get(`${process.env.BACKEND_URL}/api/files/admin/filedata`);
+      const res=await axios.get(`${API_URL}/api/files/admin/filedata`);
       const filedata=Object.values(res.data);
      
       setFiles(filedata);
@@ -57,7 +58,7 @@ const AdminDashboard = () => {
         setUsers((prevUsers) => prevUsers.filter(user => user.id !== id));
       } else {
         console.log("Deleting File with ID:", id);
-        await axios.delete(`${process.env.BACKEND_URL}/api/files/admin/${id}`);
+        await axios.delete(`${API_URL}/api/files/admin/${id}`);
   
         setFiles((prevFiles) => prevFiles.filter(file => file._id !== id));
       }
@@ -71,7 +72,7 @@ const AdminDashboard = () => {
   
    
   console.log("Deleting user with ID:", id);
-        await axios.delete(`${process.env.BACKEND_URL}/api/files/admin/user/${id}`);
+        await axios.delete(`${API_URL}/api/files/admin/user/${id}`);
   
         setUsers((prevUsers) => prevUsers.filter(user => user._id !== id));
         console.log("user deleted successful");

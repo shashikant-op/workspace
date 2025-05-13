@@ -66,7 +66,7 @@ const Dashboard = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        `${process.env.BACKEND_URL}/api/files/${fileId}/visibility`,
+        `${API_URL}/api/files/${fileId}/visibility`,
         { isPublic: !isPublic },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -177,7 +177,7 @@ const Dashboard = () => {
                     variant="link"
                     className="px-4 py-2 rounded-lg hover:!bg-teal-600 hover:!text-white border border-gray-300 bg-white text-indigo-600 cursor-pointer transition-all duration-200 ease-in-out"
 
-                    href={`${process.env.BACKEND_URL}/uploads/${file.filename}`}
+                    href={`${API_URL}/uploads/${file.filename}`}
                     download
                   >
                     <i className="bi bi-download fs-5"></i>

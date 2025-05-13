@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Form, Alert, Button } from 'react-bootstrap';
 import AuthLayout from '../components/AuthLayout';
 import styles from '../styles/Auth.module.css';
-
+const API_URL = import.meta.env.VITE_BACKEND_URL;
 const Signup = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -33,7 +33,7 @@ const Signup = () => {
 
     try {
       setLoading(true);
-      await axios.post(`${process.env.BACKEND_URL}/api/auth/signup`, {
+      await axios.post(`${API_URL}/api/auth/signup`, {
         name: formData.name,
         email: formData.email,
         password: formData.password

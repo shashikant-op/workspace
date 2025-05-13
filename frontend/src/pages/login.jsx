@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Form, Alert, Button } from 'react-bootstrap';
 import AuthLayout from '../components/AuthLayout';
 import styles from '../styles/Auth.module.css';
-
+const API_URL = import.meta.env.VITE_BACKEND_URL;
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,7 +17,7 @@ const Login = () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.post(`${process.env.BACKEND_URL}/api/auth/login`, { email, password });
+      const res = await axios.post(`${API_URL}/api/auth/login`, { email, password });
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('user', JSON.stringify(res.data.user));
       navigate('/dashboard');

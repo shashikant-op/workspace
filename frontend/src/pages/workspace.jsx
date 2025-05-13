@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Card, Spinner, Alert, Form } from "react-bootstrap";
 import styles from '../styles/Dashboard.module.css';
 import openai from"openai";
-
+const API_URL = import.meta.env.VITE_BACKEND_URL;
 const Workspace = () => {
   const { userId } = useParams();
   const [workspaceData, setWorkspaceData] = useState(null);
@@ -18,7 +18,7 @@ const Workspace = () => {
     const fetchWorkspace = async () => {
       try {
         const response = await axios.get(
-          `${process.env.BACKEND_URL}/api/files/workspace/${userId}`
+          `${API_URL}/api/files/workspace/${userId}`
         );
         setWorkspaceData(response.data);
         setFilteredWorkspacesData(response.data.files || []);
@@ -130,7 +130,7 @@ const Workspace = () => {
                     {file.title ? file.title.slice(0, 15) : file.filename.slice(0, 4)}
                   </div>
                   <a
-                    href={`${process.env.BACKEND_URL}/uploads/${file.filename}`}
+                    href={`${API_URL}/uploads/${file.filename}`}
                     download
                     className="text-blue-500 hover:text-blue-700 text-lg"
                   >
