@@ -26,13 +26,17 @@ router.post('/upload', auth, upload.single('file'), async (req, res) => {
     const file = new File({
       filename: req.file.originalname,
       title: req.body.title,
-      url: req.file.path, // Cloudinary provides the file URL in .path
+      url: req.file.path,
+       // Cloudinary provides the file URL in .path
       isPublic: req.body.isPublic === 'true',
       userId: req.user._id
     });
+    cosole.log("file uplod",req.file.originalname,req.body.title,req.file.path);
     await file.save();
     res.json({ message: 'File uploaded successfully' });
   } catch (err) {
+    
+    cosole.log("file uplod",req.file.originalname,req.body.title,req.file.path);
     console.error('Upload error:', err);
     res.status(500).json({ error: err.message });
   }
