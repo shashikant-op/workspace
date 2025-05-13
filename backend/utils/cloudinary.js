@@ -8,11 +8,11 @@ cloudinary.config({
  
 const storage=new CloudinaryStorage({
     cloudinary: cloudinary,
-    params:{
-        folder:"workspace",
-        allowedtype:['jpg', 'png', 'pdf', 'docx', 'xlsx', 'mp4', 'txt'],
-         public_id: (req, file) => Date.now() + '-' + file.originalname
-    }
+  params: {
+  folder: "workspace",
+  allowedFormats: ['jpg', 'png', 'pdf', 'docx', 'xlsx', 'mp4', 'txt'],
+  public_id: (req, file) => Date.now() + '-' + file.originalname
+}
 
 });
 module.exports={

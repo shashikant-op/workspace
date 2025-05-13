@@ -7,23 +7,26 @@ const User = require('../models/User.js');
 const {storage}=require("../utils/cloudinary.js");
 const upload = multer({ storage });
 
-// Upload file
+// Upload file using Cloudinary
 router.post('/upload', auth, upload.single('file'), async (req, res) => {
   try {
+    if (!req.file) {
+      return res.status(400).json({ error: 'No file uploaded' });
+    }
+
+    console.log("File upload attempt:", req.file.originalname, req.body.title, req.file.path);
+
     const file = new File({
       filename: req.file.originalname,
       title: req.body.title,
-      url: req.file.path,
-       // Cloudinary provides the file URL in .path
+      url: req.file.path, // Cloudinary URL
       isPublic: req.body.isPublic === 'true',
       userId: req.user._id
     });
-    cosole.log("file uplod",req.file.originalname,req.body.title,req.file.path);
+
     await file.save();
     res.json({ message: 'File uploaded successfully' });
   } catch (err) {
-    
-    cosole.log("file uplod",req.file.originalname,req.body.title,req.file.path);
     console.error('Upload error:', err);
     res.status(500).json({ error: err.message });
   }
