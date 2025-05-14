@@ -52,6 +52,7 @@ const Signup = () => {
       subtitle="Get started with your free workspace"
       footerText="Already have an account?"
       footerLink={{ path: '/login', text: 'Sign In' }}
+      
     >
       <Form onSubmit={handleSubmit} className={styles.authForm}>
         {error && <Alert variant="danger" className={styles.alert}>{error}</Alert>}
