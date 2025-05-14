@@ -195,6 +195,8 @@
     flex-direction: column;
        align-items: center ;
     justify-content: center ;
+    padding: 0;
+    margin: 0;
   }
 
   .authBrand {
@@ -202,9 +204,10 @@
   }
 
   .authCard {
-       /* margin-right: 10rem !important; */
+    margin: 0;
+     
     flex: 1 !important;
-    /* margin-left: 1rem !important; */
+    
     display: flex !important;
     flex-direction: column !important;
     align-items: center ;
