@@ -204,15 +204,14 @@
 
   .authCard {
        /* margin-right: 10rem !important; */
-    flex: 1;
+    flex: 1 !important;
     /* margin-left: 1rem !important; */
-    display: flex
-;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 3rem 4rem;
-    min-width: 400px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 3rem 4rem !important;
+    min-width: 400px !important;
   }
 }
 /* git add .
