@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(66, 119, 119, 0.607);
+  background: #FFFBEB;
  
   backdrop-filter: blur(12px); /* Glossy effect */
  
