@@ -213,6 +213,7 @@
     align-items: center ;
     justify-content: center ;
     min-width: 400px !important;
+    margin-right: 0 !important;
   }
 }
 /* git add .
