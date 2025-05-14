@@ -130,7 +130,7 @@ const Workspace = () => {
                     {file.title ? file.title.slice(0, 15) : file.filename.slice(0, 4)}
                   </div>
                   <a
-                    href={file.url}
+                    href={file.url.replace('/upload/', '/upload/fl_attachment/')}
                     download
                     className="text-blue-500 hover:text-blue-700 text-lg"
                   >

@@ -179,7 +179,7 @@ const Dashboard = () => {
                     variant="link"
                     className="px-4 py-2 rounded-lg hover:!bg-teal-600 hover:!text-white border border-gray-300 bg-white text-indigo-600 cursor-pointer transition-all duration-200 ease-in-out"
 
-                    href={`${API_URL}/uploads/${file.filename}`}
+                    href={file.url.replace('/upload/', '/upload/fl_attachment/')}
                     download
                   >
                     <i className="bi bi-download fs-5"></i>
