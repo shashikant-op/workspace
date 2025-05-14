@@ -226,6 +226,14 @@ git push origin main */
   .authCard {
     width: 100%;
     padding: 2rem;
+        /* margin-right: 10rem !important; */
+    flex: 1 !important;
+    /* margin-left: 1rem !important; */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center ;
+    justify-content: center ;
+    min-width: 400px !important;
   }
 
   .authTitle {
