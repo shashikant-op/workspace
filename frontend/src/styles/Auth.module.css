@@ -198,10 +198,12 @@
 
   .authBrand {
     padding: 2rem;
+    background-color: burlywood;
   }
 
   .authCard {
     padding: auto;
+    background-color: cadetblue;
   }
 }
 
