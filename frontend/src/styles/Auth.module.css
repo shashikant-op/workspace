@@ -207,6 +207,7 @@
     margin: 0;
     background-color: #FFFBEB;
     flex: 1 !important;
+    color:teal;
     
     display: flex !important;
     flex-direction: column !important;
@@ -231,6 +232,7 @@ git push origin main */
   }
 
   .authCard {
+    color:teal;
    background-color: #FFFBEB;
     
     padding: 2rem;
