@@ -78,7 +78,7 @@
 
 .formGroup label {
   font-weight: 600;
-  color: white;
+  color: teal;
   margin-bottom: 0.5rem;
 }
 
@@ -87,7 +87,7 @@
   padding: 0.85rem 1rem;
   border: 1px solid rgba(255, 255, 255, 0.4);
   background: rgba(255, 255, 255, 0.2);
-  color: white;
+  color: teal;
   transition: all 0.3s ease;
 }
 
@@ -181,11 +181,12 @@
 
 .authTitle {
   font-size: 2.2rem;
-  color: white;
+  color: teal;
 }
 
 .authSubtitle {
-  color: rgba(255, 255, 255, 0.8);
+  color:#F54A00 ;
+  opacity: 0.8;
 }
 
 /* 📌 Responsive Adjustments */
@@ -232,6 +233,7 @@ git push origin main */
   }
 
   .authCard {
+    text-decoration-color: teal !important;
     color:teal !important;
     
    background-color: #FFFBEB;
