@@ -231,7 +231,7 @@ git push origin main */
   }
 
   .authCard {
-    background-color: rgb(133, 236, 236) !important;
+    background-color: rgba(87, 168, 168, 0.776) !important;
     width: 100%;
     padding: 2rem;
         /* margin-right: 10rem !important; */
