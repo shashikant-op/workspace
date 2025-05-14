@@ -191,6 +191,7 @@
 /* 📌 Responsive Adjustments */
 @media (max-width: 1024px) {
   .authWrapper {
+    display: flex;
     flex-direction: column;
     width: 100vw;
     background-color: blueviolet;
@@ -202,7 +203,7 @@
   }
 
   .authCard {
-    padding: auto;
+    
     background-color: cadetblue;
   }
 }
