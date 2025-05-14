@@ -193,12 +193,9 @@
   .authWrapper {
     display: flex;
     flex-direction: column;
-    width: 100vw;
-    background-color: blueviolet;
   }
 
   .authBrand {
-    padding: 2rem;
     background-color: burlywood;
   }
 
@@ -208,8 +205,8 @@
     /* margin-left: 1rem !important; */
     display: flex !important;
     flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
+    align-items: center ;
+    justify-content: center ;
     min-width: 400px !important;
   }
 }
