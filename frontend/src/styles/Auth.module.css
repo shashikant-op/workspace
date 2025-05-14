@@ -205,7 +205,7 @@
 
   .authCard {
     margin: 0;
-     
+     background-color: teal;
     flex: 1 !important;
     
     display: flex !important;
