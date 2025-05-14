@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
   background: rgba(66, 119, 119, 0.607);
+ 
   backdrop-filter: blur(12px); /* Glossy effect */
  
   justify-content: space-around;
@@ -192,6 +193,7 @@
   .authWrapper {
     flex-direction: column;
     width: 100vw;
+    background-color: blueviolet;
   }
 
   .authBrand {
