@@ -232,6 +232,7 @@ git push origin main */
     display: none; /* Hide branding on small screens */
   }
 
+
   .authCard {
     text-decoration-color: teal !important;
     color:teal !important;
@@ -254,4 +255,59 @@ git push origin main */
   .authTitle {
     font-size: 1.75rem;
   }
+
+
+  .socialAuth {
+  margin-top: 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.socialDivider {
+  color: teal;
+  position: relative;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.socialDivider::before,
+.socialDivider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 45%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.socialDivider::before {
+  left: 0;
+}
+
+.socialDivider::after {
+  right: 0;
+}
+
+.socialButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.socialButton {
+  border: 1px solid rgba(111, 0, 255, 0.5);
+  color: rgb(244, 3, 3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !;
+  transition: all 0.1s ease;
+}
+
+.socialButton:hover {
+  border: 1px solid rgba(111, 0, 255, 0.5);
+  transform: translateY(-1px);
+}
 }
