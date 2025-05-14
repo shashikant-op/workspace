@@ -214,6 +214,7 @@
     justify-content: center ;
     min-width: 400px !important;
     margin-right: 0 !important;
+    margin-left: 0 !important;
   }
 }
 /* git add .
@@ -241,6 +242,7 @@ git push origin main */
     justify-content: center ;
     min-width: 400px !important;
     margin-right: 0 !important;
+    margin-left: 0 !important;
   }
 
   .authTitle {
