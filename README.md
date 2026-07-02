@@ -1,19 +1,32 @@
 # Workspace – Collaborative File Sharing Platform
 
-<p align="center">
-  <h3 align="center">A Modern Platform for Secure File Sharing & Collaborative Workspaces</h3>
+<div align="center">
 
-  <p align="center">
-    Create workspaces, upload files securely, share resources publicly, and collaborate seamlessly.
-    <br />
-    <br />
-    <a href="https://github.com/shashikant-op/workspace">View Source</a>
-    ·
-    <a href="https://github.com/shashikant-op/workspace/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/shashikant-op/workspace/issues">Request Feature</a>
-  </p>
+# 🚀 Workspace
+
+### Secure File Sharing • Public Workspaces • Seamless Collaboration
+
+A modern collaborative platform that enables users to create workspaces, securely upload and manage files, share resources publicly, and collaborate effortlessly through an intuitive and scalable interface.
+
+<p>
+  <a href="https://github.com/shashikant-op/workspace">
+    <strong>📂 Source Code</strong>
+  </a>
+  &nbsp;•&nbsp;
+  <a href="https://github.com/shashikant-op/workspace/issues">
+    🐞 Report Bug
+  </a>
+  &nbsp;•&nbsp;
+  <a href="https://github.com/shashikant-op/workspace/issues">
+    💡 Request Feature
+  </a>
+  &nbsp;•&nbsp;
+  <a href="https://github.com/shashikant-op/workspace/discussions">
+    💬 Discussions
+  </a>
 </p>
+
+</div>
 
 ---
 
@@ -79,6 +92,13 @@ The platform is designed to provide an intuitive and efficient collaboration exp
 - Mobile Friendly
 
 ---
+
+
+# 🛠️ Screenshot
+
+<img width="1080" height="1080" alt="Untitled design (1)" src="https://github.com/user-attachments/assets/5407d813-67af-4f8d-9f25-d7edffec2d90" />
+<img width="1080" height="1080" alt="Untitled design" src="https://github.com/user-attachments/assets/2625633d-26d3-420d-998b-f64c05f3da8e" />
+<img width="1080" height="1080" alt="Untitled design (5)" src="https://github.com/user-attachments/assets/d30560c7-7609-497e-9101-6cf8e49f8558" />
 
 # 🛠️ Tech Stack
 
